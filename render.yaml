@@ -1,12 +1,36 @@
 services:
   - type: web
-    name: openai-proxy
+    name: litellm-proxy
     runtime: image
     image:
       url: ghcr.io/berriai/litellm:main-stable
     envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: LITELLM_MASTER_KEY
+        sync: false
+      - key: LITELLM_SALT_KEY
+        sync: false
       - key: PORT
         value: 4000
+      - key: STORE_MODEL_IN_DB
+        value: True
+      - key: UI_USERNAME
+        value: admin
+      - key: UI_PASSWORD
+        sync: false
+      - key: STORE_PROMPTS_IN_SPEND_LOGS
+        value: True
+      - key: DISABLE_SPEND_LOGS
+        value: False
+      - key: DISABLE_ERROR_LOGS
+        value: False
+      - key: SET_VERBOSE
+        value: True
+      - key: PROXY_BUDGET_RESCHEDULER_MIN_TIME
+        value: 60
+      - key: PROXY_BUDGET_RESCHEDULER_MAX_TIME
+        value: 60
     numInstances: 1
-    healthCheckPath: /health/liveliness
+    healthCheckPath: /health/readiness
     autoDeploy: true

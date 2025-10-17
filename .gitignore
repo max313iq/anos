@@ -1,6 +1,7 @@
 .python-version
 .venv
 .env
+.env.proxy
 .newenv
 newenv/*
 litellm/proxy/myenv/*
@@ -99,3 +100,7 @@ litellm/proxy/to_delete_loadtest_work/*
 update_model_cost_map.py
 tests/test_litellm/proxy/_experimental/mcp_server/test_mcp_server_manager.py
 litellm/proxy/_experimental/out/guardrails/index.html
+
+# Deployment packages
+*.tar.gz
+render-deployment/

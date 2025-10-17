@@ -1,0 +1,60 @@
+# Render Blueprint for LiteLLM Proxy
+# This file enables one-click deployment to Render.com
+
+services:
+  - type: web
+    name: litellm-proxy
+    env: docker
+    dockerfilePath: ./Dockerfile.render
+    region: oregon  # Change to your preferred region
+    plan: starter   # Free tier - upgrade to 'standard' for production
+    branch: main
+    healthCheckPath: /health/readiness
+    autoDeploy: true
+    
+    # Environment Variables
+    envVars:
+      # Database Configuration
+      - key: DATABASE_URL
+        value: postgresql://postgres.mqlogafnamygvtkpwwbu:Vf498S8C8HY3xNwq@aws-0-us-east-1.pooler.supabase.com:6543/postgres
+      
+      # Security Keys - CHANGE THESE IN PRODUCTION!
+      - key: LITELLM_MASTER_KEY
+        value: sk-GlKcxTq8V92f7zVZPvAQFMlqhc5tAC6_GsSe5-1Br_s
+      
+      - key: LITELLM_SALT_KEY
+        value: sk-a1b2c3d4e5f6
+      
+      # Server Configuration
+      - key: PORT
+        value: 4000
+      
+      - key: STORE_MODEL_IN_DB
+        value: True
+      
+      # UI Credentials - CHANGE PASSWORD IN PRODUCTION!
+      - key: UI_USERNAME
+        value: admin
+      
+      - key: UI_PASSWORD
+        value: admin123!@#
+      
+      # Logging Configuration
+      - key: STORE_PROMPTS_IN_SPEND_LOGS
+        value: True
+      
+      - key: DISABLE_SPEND_LOGS
+        value: False
+      
+      - key: DISABLE_ERROR_LOGS
+        value: False
+      
+      - key: SET_VERBOSE
+        value: True
+      
+      # Budget Management
+      - key: PROXY_BUDGET_RESCHEDULER_MIN_TIME
+        value: 60
+      
+      - key: PROXY_BUDGET_RESCHEDULER_MAX_TIME
+        value: 60

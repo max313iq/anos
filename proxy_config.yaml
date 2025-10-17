@@ -10,28 +10,16 @@ model_list:
       model: gpt-4-turbo-preview
 
 general_settings:
-  # Database Configuration - Commented out due to Gitpod network restrictions
-  # database_url: postgresql://postgres.mqlogafnamygvtkpwwbu:Vf498S8C8HY3xNwq@aws-0-us-east-1.pooler.supabase.com:6543/postgres
-  # store_model_in_db: true
-  
-  # Logging Configuration - Enable ALL logs
+  # Database will be set via DATABASE_URL environment variable
+  store_model_in_db: true
   store_prompts_in_spend_logs: true
   disable_spend_logs: false
   disable_error_logs: false
-  
-  # Budget Management
   proxy_budget_rescheduler_min_time: 60
   proxy_budget_rescheduler_max_time: 60
-  
-  # Rate Limiting
   max_parallel_requests: 1000
 
 litellm_settings:
-  # Enable detailed logging
   set_verbose: true
-  
-  # Request timeout
   request_timeout: 600
-  
-  # Retry logic
   num_retries: 3
