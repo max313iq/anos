@@ -11,13 +11,14 @@ export UI_USERNAME="admin"
 export UI_PASSWORD="admin123!@#"
 export PORT="4000"
 
-# Add OpenAI API key (replace with your actual key)
-export OPENAI_API_KEY="your-openai-api-key-here"
+# Azure OpenAI credentials (as backup)
+export AZURE_OPENAI_API_KEY="81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
+export AZURE_OPENAI_API_VERSION="2025-04-01-preview"
 
 echo "Environment variables set"
 echo "📊 Database: Connected"
 echo "🔑 Master Key: Set"
-echo "🔑 OpenAI Key: Set"
+echo "☁️ Azure OpenAI: Configured"
 echo "👤 UI: $UI_USERNAME"
 echo "🌐 Port: $PORT"
 
