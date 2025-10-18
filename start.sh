@@ -11,14 +11,17 @@ export UI_USERNAME="admin"
 export UI_PASSWORD="admin123!@#"
 export PORT="4000"
 
-# Azure OpenAI credentials (as backup)
-export AZURE_OPENAI_API_KEY="81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
-export AZURE_OPENAI_API_VERSION="2025-04-01-preview"
+# Azure OpenAI credentials - USE THESE EXACT NAMES
+export AZURE_API_BASE="https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
+export AZURE_API_KEY="81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
+export AZURE_API_VERSION="2025-04-01-preview"
 
 echo "Environment variables set"
 echo "📊 Database: Connected"
 echo "🔑 Master Key: Set"
-echo "☁️ Azure OpenAI: Configured"
+echo "☁️ Azure API Base: $AZURE_API_BASE"
+echo "🔑 Azure API Key: [hidden]"
+echo "📅 Azure API Version: $AZURE_API_VERSION"
 echo "👤 UI: $UI_USERNAME"
 echo "🌐 Port: $PORT"
 
