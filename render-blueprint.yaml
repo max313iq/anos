@@ -16,7 +16,7 @@ services:
     envVars:
       # Database Configuration
       - key: DATABASE_URL
-        value: postgresql://postgres.mqlogafnamygvtkpwwbu:Vf498S8C8HY3xNwq@aws-0-us-east-1.pooler.supabase.com:6543/postgres
+        value: postgresql://postgres.mqlogafnamygvtkpwwbu:YbACD6ZGV8j5-WY@aws-1-us-east-2.pooler.supabase.com:6543/postgres
       
       # Security Keys - CHANGE THESE IN PRODUCTION!
       - key: LITELLM_MASTER_KEY
