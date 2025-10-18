@@ -2,24 +2,3 @@ model_list:
   - model_name: gpt-3.5-turbo
     litellm_params:
       model: gpt-3.5-turbo
-  - model_name: gpt-4
-    litellm_params:
-      model: gpt-4
-  - model_name: gpt-4-turbo
-    litellm_params:
-      model: gpt-4-turbo-preview
-
-general_settings:
-  # Database will be set via DATABASE_URL environment variable
-  store_model_in_db: true
-  store_prompts_in_spend_logs: true
-  disable_spend_logs: false
-  disable_error_logs: false
-  proxy_budget_rescheduler_min_time: 60
-  proxy_budget_rescheduler_max_time: 60
-  max_parallel_requests: 1000
-
-litellm_settings:
-  set_verbose: true
-  request_timeout: 600
-  num_retries: 3
