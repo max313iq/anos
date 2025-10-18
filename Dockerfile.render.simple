@@ -1,0 +1,12 @@
+FROM ghcr.io/berriai/litellm:main-stable
+
+WORKDIR /app
+
+# Expose port
+EXPOSE 4000
+
+# Clear any default entrypoint
+ENTRYPOINT []
+
+# Start LiteLLM proxy without config file (use env vars only)
+CMD ["litellm", "--port", "4000", "--host", "0.0.0.0", "--detailed_debug"]
