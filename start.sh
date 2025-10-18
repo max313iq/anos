@@ -11,29 +11,35 @@ export UI_USERNAME="admin"
 export UI_PASSWORD="admin123!@#"
 export PORT="4000"
 
-# Azure OpenAI credentials - USE THESE EXACT NAMES
+# Azure OpenAI credentials
 export AZURE_API_BASE="https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
 export AZURE_API_KEY="81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
 export AZURE_API_VERSION="2025-04-01-preview"
 
 echo "Environment variables set"
-echo "📊 Database: Connected"
-echo "🔑 Master Key: Set"
-echo "☁️ Azure API Base: $AZURE_API_BASE"
-echo "🔑 Azure API Key: [hidden]"
-echo "📅 Azure API Version: $AZURE_API_VERSION"
-echo "👤 UI: $UI_USERNAME"
-echo "🌐 Port: $PORT"
 
-# Download your config
-CONFIG_URL="https://raw.githubusercontent.com/max313iq/anos/main/proxy_config.yaml"
+# Create config file directly
 CONFIG_FILE="/app/proxy_config.yaml"
+cat > "$CONFIG_FILE" << 'EOF'
+model_list:
+  - model_name: "gpt-5-codex"
+    litellm_params:
+      model: "azure/gpt-5-codex"
+      api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
+      api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
+      api_version: "2025-04-01-preview"
 
-echo "Downloading config from: $CONFIG_URL"
-curl -sSf "$CONFIG_URL" -o "$CONFIG_FILE"
+litellm_settings:
+  drop_params: true
+  set_verbose: true
 
-echo "✅ Config downloaded"
+general_settings:
+  default_model: "gpt-5-codex"
+EOF
+
+echo "✅ Config file created"
+echo "Config file content:"
+cat "$CONFIG_FILE"
+
 echo "🚀 Starting LiteLLM..."
-
-# Start LiteLLM with your config
 exec litellm --config "$CONFIG_FILE"
