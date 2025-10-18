@@ -11,9 +11,13 @@ export UI_USERNAME="admin"
 export UI_PASSWORD="admin123!@#"
 export PORT="4000"
 
+# Add OpenAI API key (replace with your actual key)
+export OPENAI_API_KEY="your-openai-api-key-here"
+
 echo "Environment variables set"
 echo "📊 Database: Connected"
 echo "🔑 Master Key: Set"
+echo "🔑 OpenAI Key: Set"
 echo "👤 UI: $UI_USERNAME"
 echo "🌐 Port: $PORT"
 
