@@ -4,11 +4,11 @@
 services:
   - type: web
     name: litellm-proxy
-    env: docker
-    dockerfilePath: ./Dockerfile.render
+    runtime: image
+    image:
+      url: ghcr.io/berriai/litellm:main-stable
     region: oregon  # Change to your preferred region
     plan: starter   # Free tier - upgrade to 'standard' for production
-    branch: main
     healthCheckPath: /health/readiness
     autoDeploy: true
     
