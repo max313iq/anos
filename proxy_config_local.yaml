@@ -1,0 +1,30 @@
+model_list:
+  - model_name: gpt-3.5-turbo
+    litellm_params:
+      model: gpt-3.5-turbo
+  - model_name: gpt-4
+    litellm_params:
+      model: gpt-4
+  - model_name: gpt-4-turbo
+    litellm_params:
+      model: gpt-4-turbo-preview
+
+general_settings:
+  # No database for local Gitpod testing
+  store_model_in_db: false
+  
+  # UI Configuration
+  ui_username: admin
+  ui_password: "admin123!@#"
+  
+  # Logging
+  store_prompts_in_spend_logs: false
+  disable_spend_logs: true
+  disable_error_logs: false
+  
+  max_parallel_requests: 1000
+
+litellm_settings:
+  set_verbose: true
+  request_timeout: 600
+  num_retries: 3
