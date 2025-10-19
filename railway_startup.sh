@@ -24,20 +24,20 @@ echo "🗑️  Clearing old models from database..."
 python3 << 'PYTHON_SCRIPT'
 import os
 import asyncio
-from litellm.proxy.utils import PrismaClient
 
 async def clear_models():
     try:
+        from litellm.proxy.utils import PrismaClient
+        
         prisma_client = PrismaClient(
-            database_url=os.environ["DATABASE_URL"],
-            proxy_logging_only=False
+            database_url=os.environ["DATABASE_URL"]
         )
         
         await prisma_client.connect()
         
         # Delete all models from database
-        deleted = await prisma_client.db.litellm_proxymodeltable.delete_many()
-        print(f"✅ Deleted {deleted} old models from database")
+        result = await prisma_client.db.litellm_proxymodeltable.delete_many()
+        print(f"✅ Deleted old models from database")
         
         await prisma_client.disconnect()
     except Exception as e:

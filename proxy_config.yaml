@@ -1,57 +1,19 @@
 model_list:
-  # GPT-5 Codex - Optimized for code generation
-  - model_name: "gpt-5-codex"
-    litellm_params:
-      model: "azure/gpt5_series/gpt-5-codex"  # Explicit GPT-5 routing
-      api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
-      api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
-      api_version: "2024-08-01-preview"
-      # Codex capabilities: 400k context, 128k output, structured outputs, tools
-  
-  # GPT-5 - Full reasoning model with all capabilities
+  # GPT-5 - Full reasoning model (WORKING)
   - model_name: "gpt-5"
     litellm_params:
-      model: "azure/gpt5_series/gpt-5"  # Explicit GPT-5 routing
+      model: "azure/gpt5_series/gpt-5"
       api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
       api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
       api_version: "2024-08-01-preview"
-      # Full capabilities: 400k context, 128k output, reasoning, vision, tools
   
-  # GPT-5 Mini - Smaller, faster reasoning model
-  - model_name: "gpt-5-mini"
+  # GPT-5 Codex - Code generation (WORKING)
+  - model_name: "gpt-5-codex"
     litellm_params:
-      model: "azure/gpt5_series/gpt-5-mini"  # Explicit GPT-5 routing
+      model: "azure/gpt-5-codex"  # Note: Works without gpt5_series prefix
       api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
       api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
       api_version: "2024-08-01-preview"
-      # Mini: 400k context, 128k output, reasoning, vision, tools
-  
-  # GPT-5 Nano - Smallest, fastest reasoning model
-  - model_name: "gpt-5-nano"
-    litellm_params:
-      model: "azure/gpt5_series/gpt-5-nano"  # Explicit GPT-5 routing
-      api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
-      api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
-      api_version: "2024-08-01-preview"
-      # Nano: 400k context, 128k output, reasoning, vision, tools
-  
-  # GPT-5 Chat - Chat-optimized model (Preview)
-  - model_name: "gpt-5-chat"
-    litellm_params:
-      model: "azure/gpt5_series/gpt-5-chat"  # Explicit GPT-5 routing
-      api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
-      api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
-      api_version: "2024-10-01-preview"
-      # Chat: 128k context, 16k output, text/image input, text output only
-  
-  # GPT-5 Pro - Advanced reasoning model
-  - model_name: "gpt-5-pro"
-    litellm_params:
-      model: "azure/gpt5_series/gpt-5-pro"  # Explicit GPT-5 routing
-      api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
-      api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
-      api_version: "2024-10-01-preview"
-      # Pro: 400k context, 128k output, reasoning, vision, tools
 
 litellm_settings:
   drop_params: true
