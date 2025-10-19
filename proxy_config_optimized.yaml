@@ -1,0 +1,101 @@
+# Optimized LiteLLM Proxy Configuration
+# Performance, Stability, and Design Improvements
+
+model_list:
+  - model_name: gpt-3.5-turbo
+    litellm_params:
+      model: gpt-3.5-turbo
+      api_key: os.environ/OPENAI_API_KEY
+      # Optimized retry settings
+      num_retries: 2  # Reduced from 3 for faster failure detection
+      timeout: 30  # Faster timeout
+      # Fallback chain for reliability
+      fallbacks: ["gpt-4-turbo"]
+      
+  - model_name: gpt-4
+    litellm_params:
+      model: gpt-4
+      api_key: os.environ/OPENAI_API_KEY
+      num_retries: 2
+      timeout: 60
+      fallbacks: ["gpt-4-turbo", "gpt-3.5-turbo"]
+      
+  - model_name: gpt-4-turbo
+    litellm_params:
+      model: gpt-4-turbo-preview
+      api_key: os.environ/OPENAI_API_KEY
+      num_retries: 2
+      timeout: 60
+
+# Router settings for optimal performance
+router_settings:
+  # Routing strategy: simple-shuffle is fastest (O(1))
+  # For production with load balancing, use: usage-based-routing-v2
+  routing_strategy: "simple-shuffle"
+  
+  # Retry configuration
+  retry_after: 0.5  # Exponential backoff start (seconds)
+  max_retry_after: 10  # Max backoff time
+  
+  # Cooldown configuration
+  cooldown_time: 30  # Seconds (reduced from 60)
+  allowed_fails: 3  # Failures before cooldown
+  
+  # Health check optimization
+  health_check_interval: 60  # Seconds
+  
+  # Rate limiting per deployment
+  rpm: 10000  # Requests per minute
+  tpm: 1000000  # Tokens per minute
+
+# General settings
+general_settings:
+  # Database configuration (set via DATABASE_URL env var)
+  store_model_in_db: true  # Enable model management via UI
+  store_prompts_in_spend_logs: true  # Store prompts for debugging
+  disable_spend_logs: false
+  disable_error_logs: false
+  
+  # Budget management
+  proxy_budget_rescheduler_min_time: 60
+  proxy_budget_rescheduler_max_time: 60
+  
+  # Performance settings
+  max_parallel_requests: 1000  # Global concurrent request limit
+  
+  # UI Configuration
+  ui_username: admin
+  ui_password: "admin123!@#"
+  
+  # Monitoring
+  prometheus_port: 9090
+
+# LiteLLM settings for optimization
+litellm_settings:
+  # Caching configuration (disabled by default - enable Redis in production)
+  # cache: true
+  # cache_params:
+  #   type: "redis"  # Use Redis for distributed caching
+  #   ttl: 3600  # 1 hour cache TTL
+  #   similarity_threshold: 0.8  # Semantic caching threshold
+  
+  # Logging optimization
+  set_verbose: false  # Disable verbose logging in production
+  success_callback: ["prometheus"]  # Only essential callbacks
+  failure_callback: ["prometheus"]
+  
+  # Log sampling (log 10% of requests to reduce overhead)
+  log_sampling_rate: 0.1
+  
+  # Request settings
+  request_timeout: 300  # 5 minutes max
+  num_retries: 2  # Global retry setting
+  
+  # Performance optimizations
+  drop_params: true  # Drop unsupported params instead of erroring
+  use_http2: true  # Enable HTTP/2 for better multiplexing
+  
+  # Connection pooling
+  max_connections: 200  # Max concurrent connections per provider
+  max_keepalive_connections: 100  # Keep-alive pool size
+  keepalive_expiry: 120  # Keep-alive timeout (seconds)
