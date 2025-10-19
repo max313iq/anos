@@ -1,0 +1,67 @@
+# Development files
+.git
+.gitignore
+.vscode
+.devcontainer
+.gitpod.yml
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info
+dist
+build
+.pytest_cache
+.mypy_cache
+.ruff_cache
+
+# Node
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Tests
+tests/
+test_*.py
+*_test.py
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*~
+
+# UI build (we'll serve pre-built)
+ui/litellm-dashboard/node_modules
+ui/litellm-dashboard/.next
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+prisma/dev.db
+
+# Config files (use environment variables instead)
+proxy_config_*.yaml
+!proxy_config.yaml
