@@ -16,6 +16,12 @@ litellm_settings:
     port: "${REDIS_PORT:6379}"
     password: "${REDIS_PASSWORD:}"
     ttl: 600  # Cache for 10 minutes
+  
+  # Enterprise Features (Free for Development/Testing)
+  # Note: Prometheus requires prometheus_client package
+  # callbacks: ["prometheus"]  # Uncomment if prometheus_client is installed
+  # success_callback: ["prometheus"]
+  # failure_callback: ["prometheus"]
 
 general_settings:
   default_model: "gpt-5-codex"
@@ -24,3 +30,28 @@ general_settings:
   database_url: "${DATABASE_URL:postgresql://postgres:ewJimjnmajcUjpxXDnjEUuOJoWEqiliE@postgres.railway.internal:5432/railway}"
   database_connection_pool_limit: 10  # Optimize connection pool
   database_connection_timeout: 30
+  
+  # Enterprise Guardrails (Free for Development/Testing)
+  guardrails:
+    # Content Moderation - Blocks inappropriate content
+    - banned_keywords:
+        enabled: true
+        keywords: 
+          - "spam"
+          - "abuse"
+          - "hack"
+          - "exploit"
+        match_case: false
+    
+    # Block specific users if needed
+    - blocked_user_list:
+        enabled: false  # Enable when needed
+        blocked_users: []
+  
+  # Enterprise Monitoring (requires prometheus_client package)
+  # prometheus:
+  #   enabled: true
+  #   port: 9090
+  
+  # Master key for admin access
+  master_key: "${LITELLM_MASTER_KEY:sk-1234}"
