@@ -77,9 +77,10 @@ litellm_settings:
 general_settings:
   default_model: "gpt-5"  # Default to GPT-5 (working model)
   store_model_in_db: true  # Store models in database
-  # database_url: "${DATABASE_URL:postgresql://postgres:ewJimjnmajcUjpxXDnjEUuOJoWEqiliE@postgres.railway.internal:5432/railway}"
-  # database_connection_pool_limit: 10
-  # database_connection_timeout: 30
+  use_config_models: true  # FORCE: Always load models from config.yaml, not just from DB
+  database_url: "os.environ/DATABASE_URL"  # Railway PostgreSQL
+  database_connection_pool_limit: 10
+  database_connection_timeout: 30
   
   # Master key for admin access
   master_key: "sk-1234"
