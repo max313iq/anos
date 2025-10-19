@@ -278,6 +278,52 @@ a:hover {
   background: #000000 !important;
 }
 
+/* Force dark theme on all elements */
+div, header, nav, section, main, aside, footer {
+  background-color: #000000 !important;
+}
+
+/* Fix white text elements */
+.text-gray-600,
+.text-gray-900 {
+  color: #ffffff !important;
+}
+
+/* Fix hover states */
+.hover\:text-gray-900:hover,
+.hover\:bg-gray-100:hover {
+  color: #ff0040 !important;
+  background-color: rgba(255, 0, 64, 0.1) !important;
+}
+
+/* Fix buttons and links */
+button, a {
+  color: #ffffff !important;
+}
+
+button:hover, a:hover {
+  color: #ff0040 !important;
+}
+
+/* Fix dropdown triggers */
+.ant-dropdown-trigger {
+  color: #ffffff !important;
+}
+
+.ant-dropdown-trigger:hover {
+  color: #ff0040 !important;
+}
+
+/* Fix SVG icons */
+svg {
+  color: #ffffff !important;
+  fill: currentColor !important;
+}
+
+svg:hover {
+  color: #ff0040 !important;
+}
+
 /* Terminal-style scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
