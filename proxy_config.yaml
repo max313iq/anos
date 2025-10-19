@@ -56,18 +56,13 @@ model_list:
 litellm_settings:
   drop_params: true
   set_verbose: true  # Enable verbose logging for development
-  cache: true  # Enable caching
-  cache_params:
-    type: "redis"
-    host: "${REDIS_HOST:redis.railway.internal}"
-    port: "${REDIS_PORT:6379}"
-    password: "${REDIS_PASSWORD:}"
-    ttl: 600  # Cache for 10 minutes
+  cache: false  # Disable caching for local development (enable on Railway with Redis)
   
-  # Enterprise Features (Free for Development/Testing)
-  callbacks: ["prometheus", "openai_moderation"]  # Enable monitoring and content moderation
-  success_callback: ["prometheus"]
-  failure_callback: ["prometheus"]
+  # Enterprise Features (Disabled - requires prometheus_client package)
+  # Install with: pip install prometheus-client
+  # callbacks: ["prometheus"]
+  # success_callback: ["prometheus"]
+  # failure_callback: ["prometheus"]
   
   # Optional: Langfuse for advanced observability (requires LANGFUSE_PUBLIC_KEY and LANGFUSE_SECRET_KEY)
   # callbacks: ["prometheus", "openai_moderation", "langfuse"]
@@ -77,18 +72,17 @@ litellm_settings:
   num_retries: 3  # Retry failed requests
   
   # Content Moderation Settings
-  moderation_check: true  # Enable OpenAI moderation on all requests
+  # moderation_check: true  # Disabled for local development
 
 general_settings:
-  default_model: "gpt-5-codex"  # Default to GPT-5 Codex (optimized for code)
-  store_model_in_db: true
-  store_prompts_in_spend_logs: true
-  database_url: "${DATABASE_URL:postgresql://postgres:ewJimjnmajcUjpxXDnjEUuOJoWEqiliE@postgres.railway.internal:5432/railway}"
-  database_connection_pool_limit: 10  # Optimize connection pool
-  database_connection_timeout: 30
+  default_model: "gpt-5"  # Default to GPT-5 (working model)
+  store_model_in_db: true  # Store models in database
+  # database_url: "${DATABASE_URL:postgresql://postgres:ewJimjnmajcUjpxXDnjEUuOJoWEqiliE@postgres.railway.internal:5432/railway}"
+  # database_connection_pool_limit: 10
+  # database_connection_timeout: 30
   
   # Master key for admin access
-  master_key: "${LITELLM_MASTER_KEY:sk-1234}"
+  master_key: "sk-1234"
   
   # Enterprise Audit Logging
   audit_logs_enabled: true
@@ -108,42 +102,16 @@ general_settings:
     default_tpm_limit: 10000  # 10k tokens per minute
     default_rpm_limit: 100  # 100 requests per minute
   
-  # Enterprise Guardrails (Free for Development/Testing)
-  guardrails:
-    # OpenAI Content Moderation - Checks for harmful content
-    - openai_moderation:
-        enabled: true
-        api_key: "${OPENAI_API_KEY:}"  # Uses OpenAI API for moderation
-        categories:
-          - "hate"
-          - "hate/threatening"
-          - "self-harm"
-          - "sexual"
-          - "sexual/minors"
-          - "violence"
-          - "violence/graphic"
-    
-    # Banned Keywords - Blocks specific words
-    - banned_keywords:
-        enabled: true
-        keywords: 
-          - "spam"
-          - "abuse"
-          - "hack"
-          - "exploit"
-          - "phishing"
-          - "malware"
-        match_case: false
-    
-    # Block specific users if needed
-    - blocked_user_list:
-        enabled: false  # Enable when needed
-        blocked_users: []
+  # Enterprise Guardrails (Disabled for local development)
+  # guardrails:
+  #   - banned_keywords:
+  #       enabled: true
+  #       keywords: ["spam", "abuse"]
   
-  # Enterprise Monitoring
-  prometheus:
-    enabled: true
-    port: 9090
+  # Enterprise Monitoring (Disabled - requires prometheus_client package)
+  # prometheus:
+  #   enabled: true
+  #   port: 9090
     
   # Advanced Logging
   detailed_debug: true  # Detailed error messages
