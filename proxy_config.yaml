@@ -8,9 +8,19 @@ model_list:
 
 litellm_settings:
   drop_params: true
-  set_verbose: true
+  set_verbose: false  # Disable verbose logging for better performance
+  cache: true  # Enable caching
+  cache_params:
+    type: "redis"
+    host: "${REDIS_HOST:redis.railway.internal}"
+    port: "${REDIS_PORT:6379}"
+    password: "${REDIS_PASSWORD:}"
+    ttl: 600  # Cache for 10 minutes
 
 general_settings:
   default_model: "gpt-5-codex"
   store_model_in_db: true
   store_prompts_in_spend_logs: true
+  database_url: "${DATABASE_URL:postgresql://postgres:ewJimjnmajcUjpxXDnjEUuOJoWEqiliE@postgres.railway.internal:5432/railway}"
+  database_connection_pool_limit: 10  # Optimize connection pool
+  database_connection_timeout: 30

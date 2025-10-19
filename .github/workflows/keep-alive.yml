@@ -1,0 +1,29 @@
+name: Keep Railway Service Alive
+
+on:
+  schedule:
+    # Run every 5 minutes
+    - cron: '*/5 * * * *'
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  ping-service:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Railway Health Endpoint
+        run: |
+          echo "Pinging Railway service..."
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://anos-production.up.railway.app/health || echo "000")
+          echo "Response code: $response"
+          
+          if [ "$response" = "200" ] || [ "$response" = "401" ]; then
+            echo "✅ Service is alive!"
+          else
+            echo "⚠️ Service may be sleeping (code: $response)"
+          fi
+          
+      - name: Ping UI Endpoint
+        run: |
+          echo "Pinging UI endpoint..."
+          curl -s -o /dev/null https://anos-production.up.railway.app/ui/ || true
+          echo "✅ UI pinged"
