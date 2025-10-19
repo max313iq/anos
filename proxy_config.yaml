@@ -6,6 +6,7 @@ model_list:
       api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
       api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
       api_version: "2024-08-01-preview"
+      drop_params: true  # Drop unsupported parameters
   
   # GPT-5 Codex - Code generation (WORKING)
   - model_name: "gpt-5-codex"
@@ -14,6 +15,7 @@ model_list:
       api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
       api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
       api_version: "2024-08-01-preview"
+      drop_params: true  # Drop unsupported parameters
 
 litellm_settings:
   drop_params: true
