@@ -1,10 +1,20 @@
 model_list:
-  - model_name: "gpt-5-codex"
+  # IMPORTANT: Replace "gpt-35-turbo" with your actual Azure deployment name
+  # Find it at: https://portal.azure.com → Your Azure OpenAI → Deployments
+  - model_name: "gpt-35-turbo"  # Your custom name for LiteLLM
     litellm_params:
-      model: "azure/gpt-5-codex"
+      model: "azure/gpt-35-turbo"  # azure/ + your deployment name
       api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
       api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
-      api_version: "2025-04-01-preview"
+      api_version: "2024-02-15-preview"  # Use current API version
+  
+  # Example: Add more models if you have them
+  # - model_name: "gpt-4"
+  #   litellm_params:
+  #     model: "azure/gpt-4"  # Your GPT-4 deployment name
+  #     api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
+  #     api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
+  #     api_version: "2024-02-15-preview"
 
 litellm_settings:
   drop_params: true
@@ -33,7 +43,7 @@ litellm_settings:
   moderation_check: true  # Enable OpenAI moderation on all requests
 
 general_settings:
-  default_model: "gpt-5-codex"
+  default_model: "gpt-35-turbo"  # Must match model_name above
   store_model_in_db: true
   store_prompts_in_spend_logs: true
   database_url: "${DATABASE_URL:postgresql://postgres:ewJimjnmajcUjpxXDnjEUuOJoWEqiliE@postgres.railway.internal:5432/railway}"
