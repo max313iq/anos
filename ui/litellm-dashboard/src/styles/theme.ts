@@ -17,9 +17,9 @@ export const redDarkTheme: ThemeConfig = {
     colorBgSpotlight: '#0a0a0a',
     colorBgMask: 'rgba(0, 0, 0, 0.95)',
     
-    // Border Colors - Blue Glow
-    colorBorder: '#0066ff',
-    colorBorderSecondary: '#0052cc',
+    // Border Colors - Red Glow
+    colorBorder: '#ff0040',
+    colorBorderSecondary: '#cc0033',
     
     // Text Colors - High Contrast
     colorText: '#ffffff',
@@ -28,10 +28,10 @@ export const redDarkTheme: ThemeConfig = {
     colorTextQuaternary: '#666666',
     colorTextDisabled: '#444444',
     
-    // Link Colors - Blue Neon
-    colorLink: '#00ccff',
-    colorLinkHover: '#33d9ff',
-    colorLinkActive: '#0099cc',
+    // Link Colors - Red Neon
+    colorLink: '#ff0040',
+    colorLinkHover: '#ff1a55',
+    colorLinkActive: '#cc0033',
     
     // Success/Error/Warning/Info - Neon Style
     colorSuccess: '#00ff88',
@@ -46,13 +46,13 @@ export const redDarkTheme: ThemeConfig = {
     colorWarningBg: '#1a1400',
     colorWarningBorder: '#cc8800',
     
-    colorInfo: '#00ccff',
-    colorInfoBg: '#001a26',
-    colorInfoBorder: '#0099cc',
+    colorInfo: '#ff0040',
+    colorInfoBg: '#1a0008',
+    colorInfoBorder: '#cc0033',
     
     // Component specific - Subtle overlays
     colorFillSecondary: 'rgba(255, 0, 64, 0.1)',
-    colorFillTertiary: 'rgba(0, 102, 255, 0.05)',
+    colorFillTertiary: 'rgba(255, 0, 64, 0.05)',
     colorFillQuaternary: 'rgba(255, 255, 255, 0.02)',
     
     // Border radius - Sharp edges for hacker aesthetic
@@ -68,9 +68,9 @@ export const redDarkTheme: ThemeConfig = {
     fontSizeHeading4: 16,
     fontSizeHeading5: 14,
     
-    // Shadows - Neon glow effects
-    boxShadow: '0 0 20px rgba(255, 0, 64, 0.3), 0 0 40px rgba(0, 102, 255, 0.2)',
-    boxShadowSecondary: '0 0 10px rgba(255, 0, 64, 0.2)',
+    // Shadows - Red neon glow effects
+    boxShadow: '0 0 20px rgba(255, 0, 64, 0.4), 0 0 40px rgba(255, 0, 64, 0.2)',
+    boxShadowSecondary: '0 0 10px rgba(255, 0, 64, 0.3)',
   },
   
   algorithm: undefined, // We'll use custom dark theme
@@ -90,26 +90,26 @@ export const redDarkTheme: ThemeConfig = {
     Menu: {
       darkItemBg: 'transparent',
       darkItemColor: '#ffffff',
-      darkItemHoverBg: 'rgba(0, 102, 255, 0.2)',
-      darkItemHoverColor: '#00ccff',
-      darkItemSelectedBg: 'rgba(255, 0, 64, 0.2)',
+      darkItemHoverBg: 'rgba(255, 0, 64, 0.15)',
+      darkItemHoverColor: '#ff0040',
+      darkItemSelectedBg: 'rgba(255, 0, 64, 0.25)',
       darkItemSelectedColor: '#ff0040',
       darkSubMenuItemBg: '#000000',
       itemBg: 'transparent',
       itemColor: '#ffffff',
-      itemHoverBg: 'rgba(0, 102, 255, 0.2)',
-      itemHoverColor: '#00ccff',
-      itemSelectedBg: 'rgba(255, 0, 64, 0.2)',
+      itemHoverBg: 'rgba(255, 0, 64, 0.15)',
+      itemHoverColor: '#ff0040',
+      itemSelectedBg: 'rgba(255, 0, 64, 0.25)',
       itemSelectedColor: '#ff0040',
     },
     
-    // Button - Glowing neon effect
+    // Button - Glowing red neon effect
     Button: {
       primaryColor: '#ffffff',
       primaryShadow: '0 0 20px rgba(255, 0, 64, 0.6), 0 0 40px rgba(255, 0, 64, 0.3)',
       defaultBg: '#0a0a0a',
       defaultColor: '#ffffff',
-      defaultBorderColor: '#0066ff',
+      defaultBorderColor: '#ff0040',
       dangerColor: '#ffffff',
       dangerShadow: '0 0 20px rgba(255, 0, 64, 0.6)',
     },
@@ -117,10 +117,10 @@ export const redDarkTheme: ThemeConfig = {
     // Input - Terminal style
     Input: {
       colorBgContainer: '#0a0a0a',
-      colorBorder: '#0066ff',
+      colorBorder: '#ff0040',
       colorText: '#ffffff',
       colorTextPlaceholder: '#666666',
-      hoverBorderColor: '#00ccff',
+      hoverBorderColor: '#ff1a55',
       activeBorderColor: '#ff0040',
     },
     
@@ -128,12 +128,12 @@ export const redDarkTheme: ThemeConfig = {
     Select: {
       colorBgContainer: '#0a0a0a',
       colorBgElevated: '#0a0a0a',
-      colorBorder: '#0066ff',
+      colorBorder: '#ff0040',
       colorText: '#ffffff',
       colorTextPlaceholder: '#666666',
-      optionSelectedBg: 'rgba(255, 0, 64, 0.2)',
+      optionSelectedBg: 'rgba(255, 0, 64, 0.25)',
       optionSelectedColor: '#ff0040',
-      optionActiveBg: 'rgba(0, 102, 255, 0.2)',
+      optionActiveBg: 'rgba(255, 0, 64, 0.15)',
     },
     
     // Table - Matrix style
@@ -141,10 +141,10 @@ export const redDarkTheme: ThemeConfig = {
       colorBgContainer: '#000000',
       colorText: '#ffffff',
       colorTextHeading: '#ffffff',
-      colorBorderSecondary: '#0066ff',
+      colorBorderSecondary: '#ff0040',
       headerBg: '#0a0a0a',
       headerColor: '#ff0040',
-      rowHoverBg: 'rgba(0, 102, 255, 0.1)',
+      rowHoverBg: 'rgba(255, 0, 64, 0.1)',
       rowSelectedBg: 'rgba(255, 0, 64, 0.15)',
       rowSelectedHoverBg: 'rgba(255, 0, 64, 0.25)',
     },
@@ -152,7 +152,7 @@ export const redDarkTheme: ThemeConfig = {
     // Card
     Card: {
       colorBgContainer: '#0a0a0a',
-      colorBorderSecondary: '#0066ff',
+      colorBorderSecondary: '#ff0040',
       colorTextHeading: '#ffffff',
       colorTextDescription: '#cccccc',
     },
@@ -169,15 +169,15 @@ export const redDarkTheme: ThemeConfig = {
     Dropdown: {
       colorBgElevated: '#0a0a0a',
       colorText: '#ffffff',
-      controlItemBgHover: 'rgba(0, 102, 255, 0.2)',
-      controlItemBgActive: 'rgba(255, 0, 64, 0.2)',
+      controlItemBgHover: 'rgba(255, 0, 64, 0.15)',
+      controlItemBgActive: 'rgba(255, 0, 64, 0.25)',
     },
     
     // Tabs
     Tabs: {
       cardBg: '#0a0a0a',
       itemColor: '#cccccc',
-      itemHoverColor: '#00ccff',
+      itemHoverColor: '#ff1a55',
       itemSelectedColor: '#ff0040',
       itemActiveColor: '#ff0040',
       inkBarColor: '#ff0040',
@@ -224,19 +224,19 @@ export const redDarkTheme: ThemeConfig = {
     Checkbox: {
       colorPrimary: '#ff0040',
       colorPrimaryHover: '#ff1a55',
-      colorBorder: '#0066ff',
+      colorBorder: '#ff0040',
     },
     
     Radio: {
       colorPrimary: '#ff0040',
       colorPrimaryHover: '#ff1a55',
-      colorBorder: '#0066ff',
+      colorBorder: '#ff0040',
     },
     
     // Progress
     Progress: {
       defaultColor: '#ff0040',
-      remainingColor: 'rgba(0, 102, 255, 0.3)',
+      remainingColor: 'rgba(255, 0, 64, 0.2)',
     },
     
     // Badge
@@ -253,7 +253,7 @@ export const redDarkTheme: ThemeConfig = {
     
     // Divider
     Divider: {
-      colorSplit: '#0066ff',
+      colorSplit: '#ff0040',
     },
     
     // Pagination
