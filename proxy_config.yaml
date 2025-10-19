@@ -8,7 +8,7 @@ model_list:
 
 litellm_settings:
   drop_params: true
-  set_verbose: false  # Disable verbose logging for better performance
+  set_verbose: true  # Enable verbose logging for development
   cache: true  # Enable caching
   cache_params:
     type: "redis"
@@ -18,10 +18,19 @@ litellm_settings:
     ttl: 600  # Cache for 10 minutes
   
   # Enterprise Features (Free for Development/Testing)
-  # Note: Prometheus requires prometheus_client package
-  # callbacks: ["prometheus"]  # Uncomment if prometheus_client is installed
-  # success_callback: ["prometheus"]
-  # failure_callback: ["prometheus"]
+  callbacks: ["prometheus", "openai_moderation"]  # Enable monitoring and content moderation
+  success_callback: ["prometheus"]
+  failure_callback: ["prometheus"]
+  
+  # Optional: Langfuse for advanced observability (requires LANGFUSE_PUBLIC_KEY and LANGFUSE_SECRET_KEY)
+  # callbacks: ["prometheus", "openai_moderation", "langfuse"]
+  
+  # Request/Response Logging
+  request_timeout: 600  # 10 minutes timeout
+  num_retries: 3  # Retry failed requests
+  
+  # Content Moderation Settings
+  moderation_check: true  # Enable OpenAI moderation on all requests
 
 general_settings:
   default_model: "gpt-5-codex"
@@ -31,9 +40,43 @@ general_settings:
   database_connection_pool_limit: 10  # Optimize connection pool
   database_connection_timeout: 30
   
+  # Master key for admin access
+  master_key: "${LITELLM_MASTER_KEY:sk-1234}"
+  
+  # Enterprise Audit Logging
+  audit_logs_enabled: true
+  audit_logs_table_name: "LiteLLM_AuditLog"
+  
+  # Rate Limiting (per user/key)
+  max_parallel_requests: 100
+  max_request_size_mb: 10
+  
+  # Budget Management (Enterprise)
+  enable_budget_tracking: true
+  budget_duration: "30d"  # Track budgets over 30 days
+  
+  # Default limits for new keys (can be overridden per key)
+  litellm_settings:
+    default_max_budget: 100.0  # $100 default budget
+    default_tpm_limit: 10000  # 10k tokens per minute
+    default_rpm_limit: 100  # 100 requests per minute
+  
   # Enterprise Guardrails (Free for Development/Testing)
   guardrails:
-    # Content Moderation - Blocks inappropriate content
+    # OpenAI Content Moderation - Checks for harmful content
+    - openai_moderation:
+        enabled: true
+        api_key: "${OPENAI_API_KEY:}"  # Uses OpenAI API for moderation
+        categories:
+          - "hate"
+          - "hate/threatening"
+          - "self-harm"
+          - "sexual"
+          - "sexual/minors"
+          - "violence"
+          - "violence/graphic"
+    
+    # Banned Keywords - Blocks specific words
     - banned_keywords:
         enabled: true
         keywords: 
@@ -41,6 +84,8 @@ general_settings:
           - "abuse"
           - "hack"
           - "exploit"
+          - "phishing"
+          - "malware"
         match_case: false
     
     # Block specific users if needed
@@ -48,10 +93,11 @@ general_settings:
         enabled: false  # Enable when needed
         blocked_users: []
   
-  # Enterprise Monitoring (requires prometheus_client package)
-  # prometheus:
-  #   enabled: true
-  #   port: 9090
-  
-  # Master key for admin access
-  master_key: "${LITELLM_MASTER_KEY:sk-1234}"
+  # Enterprise Monitoring
+  prometheus:
+    enabled: true
+    port: 9090
+    
+  # Advanced Logging
+  detailed_debug: true  # Detailed error messages
+  log_raw_request_response: true  # Log full requests/responses for debugging

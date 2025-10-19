@@ -1,5 +1,6 @@
 # LITELLM PROXY DEPENDENCIES #
 typing-extensions==4.12.2 # CRITICAL: Must be installed first for type hints
+prometheus-client==0.20.0 # Enterprise: Prometheus metrics
 anyio==4.8.0 # openai + http req.
 httpx==0.28.1
 openai==1.99.5  # openai req.
