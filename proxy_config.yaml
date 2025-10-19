@@ -1,20 +1,57 @@
 model_list:
-  # IMPORTANT: Replace "gpt-35-turbo" with your actual Azure deployment name
-  # Find it at: https://portal.azure.com → Your Azure OpenAI → Deployments
-  - model_name: "gpt-35-turbo"  # Your custom name for LiteLLM
+  # GPT-5 Codex - Optimized for code generation (Responses API only)
+  - model_name: "gpt-5-codex"
     litellm_params:
-      model: "azure/gpt-35-turbo"  # azure/ + your deployment name
+      model: "azure/gpt-5-codex"
       api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
       api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
-      api_version: "2024-02-15-preview"  # Use current API version
+      api_version: "2024-08-01-preview"
+      # Codex capabilities: 400k context, 128k output, structured outputs, tools
   
-  # Example: Add more models if you have them
-  # - model_name: "gpt-4"
-  #   litellm_params:
-  #     model: "azure/gpt-4"  # Your GPT-4 deployment name
-  #     api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
-  #     api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
-  #     api_version: "2024-02-15-preview"
+  # GPT-5 - Full reasoning model with all capabilities
+  - model_name: "gpt-5"
+    litellm_params:
+      model: "azure/gpt-5"
+      api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
+      api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
+      api_version: "2024-08-01-preview"
+      # Full capabilities: 400k context, 128k output, reasoning, vision, tools
+  
+  # GPT-5 Mini - Smaller, faster reasoning model
+  - model_name: "gpt-5-mini"
+    litellm_params:
+      model: "azure/gpt-5-mini"
+      api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
+      api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
+      api_version: "2024-08-01-preview"
+      # Mini: 400k context, 128k output, reasoning, vision, tools
+  
+  # GPT-5 Nano - Smallest, fastest reasoning model
+  - model_name: "gpt-5-nano"
+    litellm_params:
+      model: "azure/gpt-5-nano"
+      api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
+      api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
+      api_version: "2024-08-01-preview"
+      # Nano: 400k context, 128k output, reasoning, vision, tools
+  
+  # GPT-5 Chat - Chat-optimized model (Preview)
+  - model_name: "gpt-5-chat"
+    litellm_params:
+      model: "azure/gpt-5-chat"
+      api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
+      api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
+      api_version: "2024-10-01-preview"
+      # Chat: 128k context, 16k output, text/image input, text output only
+  
+  # GPT-5 Pro - Advanced reasoning model (Responses API)
+  - model_name: "gpt-5-pro"
+    litellm_params:
+      model: "azure/gpt-5-pro"
+      api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
+      api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
+      api_version: "2024-10-01-preview"
+      # Pro: 400k context, 128k output, reasoning, vision, tools
 
 litellm_settings:
   drop_params: true
@@ -43,7 +80,7 @@ litellm_settings:
   moderation_check: true  # Enable OpenAI moderation on all requests
 
 general_settings:
-  default_model: "gpt-35-turbo"  # Must match model_name above
+  default_model: "gpt-5-codex"  # Default to GPT-5 Codex (optimized for code)
   store_model_in_db: true
   store_prompts_in_spend_logs: true
   database_url: "${DATABASE_URL:postgresql://postgres:ewJimjnmajcUjpxXDnjEUuOJoWEqiliE@postgres.railway.internal:5432/railway}"
