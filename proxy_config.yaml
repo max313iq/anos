@@ -2,11 +2,12 @@ model_list:
   # GPT-5 Codex - Optimized for code generation (Responses API only)
   - model_name: "gpt-5-codex"
     litellm_params:
-      model: "azure/gpt-5-codex"
+      model: "azure_text/gpt-5-codex"  # azure_text uses Responses API
       api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
       api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
       api_version: "2024-08-01-preview"
       # Codex capabilities: 400k context, 128k output, structured outputs, tools
+      # Uses Responses API - LiteLLM auto-translates chat to responses format
   
   # GPT-5 - Full reasoning model with all capabilities
   - model_name: "gpt-5"
@@ -47,11 +48,12 @@ model_list:
   # GPT-5 Pro - Advanced reasoning model (Responses API)
   - model_name: "gpt-5-pro"
     litellm_params:
-      model: "azure/gpt-5-pro"
+      model: "azure_text/gpt-5-pro"  # azure_text uses Responses API
       api_base: "https://ai-uea1sub1618ai763855450353.cognitiveservices.azure.com/"
       api_key: "81pOESDtLwIIHjfSS7RytcJ2yUd6eF1ksZsgDtW737fh0J9giZ72JQQJ99BJACfhMk5XJ3w3AAAAACOGYbD2"
       api_version: "2024-10-01-preview"
       # Pro: 400k context, 128k output, reasoning, vision, tools
+      # Uses Responses API - LiteLLM auto-translates chat to responses format
 
 litellm_settings:
   drop_params: true
