@@ -3,29 +3,276 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 255, 255, 255;
-  --neutral-border: #dcddeb;
+  /* Hacker Theme - Pure Black with Red Neon and Blue Glow */
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0; /* Pure black */
+  --background-end-rgb: 0, 0, 0; /* Pure black */
+  --neutral-border: #0066ff; /* Blue glow */
+  
+  /* Primary Colors - Neon */
+  --primary-red: #ff0040; /* Red neon */
+  --primary-blue: #00ccff; /* Blue neon */
+  --primary-black: #000000; /* Pure black */
+  
+  /* Accent Colors */
+  --accent-red: #ff1a55; /* Lighter red neon */
+  --accent-blue: #33d9ff; /* Lighter blue neon */
+  --accent-dark: #0a0a0a; /* Subtle dark */
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #ff0040 0%, #0066ff 100%);
+  --gradient-secondary: linear-gradient(135deg, #000000 0%, #0a0a0a 100%);
+  --gradient-accent: linear-gradient(90deg, #ff0040 0%, #00ccff 50%, #ff0040 100%);
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-} */
+/* Force dark mode for all pages */
+html.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
+  --neutral-border: #0066ff;
+}
 
+/* Pure black background with subtle scan lines */
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  background: #000000;
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* Scanline effect overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 102, 255, 0.03) 0px,
+    transparent 1px,
+    transparent 2px,
+    rgba(0, 102, 255, 0.03) 3px
+  );
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Animated gradient background for special sections */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #000000, #0a0a0a, #000000);
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease infinite;
+}
+
+/* Red neon accent elements */
+.accent-red {
+  color: var(--primary-red);
+  text-shadow: 0 0 10px rgba(255, 0, 64, 0.5);
+}
+
+.bg-accent-red {
+  background-color: var(--primary-red);
+  box-shadow: 0 0 20px rgba(255, 0, 64, 0.4);
+}
+
+.border-accent-red {
+  border-color: var(--primary-red);
+  box-shadow: 0 0 10px rgba(255, 0, 64, 0.3);
+}
+
+/* Blue neon accent elements */
+.accent-blue {
+  color: var(--primary-blue);
+  text-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+}
+
+.bg-accent-blue {
+  background-color: var(--primary-blue);
+  box-shadow: 0 0 20px rgba(0, 204, 255, 0.4);
+}
+
+.border-accent-blue {
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 10px rgba(0, 204, 255, 0.3);
+}
+
+/* Gradient text with neon glow */
+.gradient-text {
+  background: var(--gradient-accent);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(255, 0, 64, 0.5));
+}
+
+/* Intense glowing effects */
+.glow-red {
+  box-shadow: 
+    0 0 10px rgba(255, 0, 64, 0.6),
+    0 0 20px rgba(255, 0, 64, 0.4),
+    0 0 40px rgba(255, 0, 64, 0.2);
+}
+
+.glow-blue {
+  box-shadow: 
+    0 0 10px rgba(0, 204, 255, 0.6),
+    0 0 20px rgba(0, 204, 255, 0.4),
+    0 0 40px rgba(0, 204, 255, 0.2);
+}
+
+.glow-red-hover:hover {
+  box-shadow: 
+    0 0 15px rgba(255, 0, 64, 0.8),
+    0 0 30px rgba(255, 0, 64, 0.6),
+    0 0 60px rgba(255, 0, 64, 0.4);
+  transition: box-shadow 0.3s ease;
+  transform: translateY(-2px);
+}
+
+.glow-blue-hover:hover {
+  box-shadow: 
+    0 0 15px rgba(0, 204, 255, 0.8),
+    0 0 30px rgba(0, 204, 255, 0.6),
+    0 0 60px rgba(0, 204, 255, 0.4);
+  transition: box-shadow 0.3s ease;
+  transform: translateY(-2px);
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Pulsing glow animation */
+@keyframes pulse-glow-red {
+  0%, 100% {
+    box-shadow: 
+      0 0 10px rgba(255, 0, 64, 0.4),
+      0 0 20px rgba(255, 0, 64, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 0 20px rgba(255, 0, 64, 0.6),
+      0 0 40px rgba(255, 0, 64, 0.4);
+  }
+}
+
+@keyframes pulse-glow-blue {
+  0%, 100% {
+    box-shadow: 
+      0 0 10px rgba(0, 204, 255, 0.4),
+      0 0 20px rgba(0, 204, 255, 0.2);
+  }
+  50% {
+    box-shadow: 
+      0 0 20px rgba(0, 204, 255, 0.6),
+      0 0 40px rgba(0, 204, 255, 0.4);
+  }
+}
+
+/* Text glow animation */
+@keyframes text-glow-red {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(255, 0, 64, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(255, 0, 64, 0.8), 0 0 25px rgba(255, 0, 64, 0.4);
+  }
+}
+
+@keyframes text-glow-blue {
+  0%, 100% {
+    text-shadow: 0 0 5px rgba(0, 204, 255, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(0, 204, 255, 0.8), 0 0 25px rgba(0, 204, 255, 0.4);
+  }
+}
+
+/* Utility classes for animations */
+.pulse-glow-red {
+  animation: pulse-glow-red 2s ease-in-out infinite;
+}
+
+.pulse-glow-blue {
+  animation: pulse-glow-blue 2s ease-in-out infinite;
+}
+
+.text-glow-red {
+  animation: text-glow-red 2s ease-in-out infinite;
+}
+
+.text-glow-blue {
+  animation: text-glow-blue 2s ease-in-out infinite;
+}
+
+/* Button hover effects with glow */
+button:hover,
+.ant-btn:hover {
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+.ant-btn-primary:hover {
+  box-shadow: 
+    0 0 20px rgba(255, 0, 64, 0.8),
+    0 0 40px rgba(255, 0, 64, 0.5) !important;
+}
+
+/* Input focus glow */
+input:focus,
+textarea:focus,
+.ant-input:focus,
+.ant-input-focused {
+  box-shadow: 
+    0 0 10px rgba(255, 0, 64, 0.5),
+    0 0 20px rgba(255, 0, 64, 0.3) !important;
+  border-color: #ff0040 !important;
+}
+
+/* Card hover effect */
+.ant-card:hover {
+  box-shadow: 
+    0 0 15px rgba(0, 102, 255, 0.4),
+    0 0 30px rgba(0, 102, 255, 0.2) !important;
+  border-color: #00ccff !important;
+  transform: translateY(-2px);
+}
+
+/* Table row hover with glow */
+.ant-table-tbody > tr:hover > td {
+  background: rgba(0, 102, 255, 0.1) !important;
+  box-shadow: inset 0 0 10px rgba(0, 102, 255, 0.2);
+}
+
+/* Menu item hover glow */
+.ant-menu-item:hover,
+.ant-menu-submenu-title:hover {
+  box-shadow: inset 0 0 10px rgba(0, 204, 255, 0.3);
+}
+
+/* Tab hover effect */
+.ant-tabs-tab:hover {
+  color: #00ccff !important;
+  text-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+}
+
+/* Link hover glow */
+a:hover {
+  text-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+  transition: all 0.3s ease;
 }
 
 .table-wrapper {
@@ -36,15 +283,16 @@ body {
 
 .custom-border {
   border: 1px solid var(--neutral-border);
+  box-shadow: 0 0 5px rgba(0, 102, 255, 0.2);
 }
 
-/* Custom dropdown styles */
+/* Custom dropdown styles with glow */
 .ant-dropdown-menu-item {
   padding: 0 !important;
 }
 
 .ant-dropdown-menu-item > div {
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 /* Don't apply hover to user info section */
@@ -60,8 +308,48 @@ body {
 .ant-dropdown-menu {
   padding: 4px !important;
   min-width: 280px !important;
+  background: #0a0a0a !important;
+  border: 1px solid #0066ff !important;
+  box-shadow: 0 0 20px rgba(0, 102, 255, 0.3) !important;
 }
 
 .ant-dropdown-menu-item-divider {
   margin: 4px 0;
+  background: #0066ff !important;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Override any white backgrounds */
+.ant-layout,
+.ant-layout-content,
+.ant-layout-header,
+.ant-layout-footer,
+.ant-layout-sider {
+  background: #000000 !important;
+}
+
+/* Terminal-style scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+  border: 1px solid #0066ff;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #ff0040;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(255, 0, 64, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ff1a55;
+  box-shadow: 0 0 15px rgba(255, 0, 64, 0.7);
 }
