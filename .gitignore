@@ -104,3 +104,5 @@ litellm/proxy/_experimental/out/guardrails/index.html
 # Deployment packages
 *.tar.gz
 render-deployment/
+.env.local
+ui/litellm-dashboard/.env.local
